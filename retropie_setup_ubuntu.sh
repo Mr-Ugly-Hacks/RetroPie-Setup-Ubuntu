@@ -65,7 +65,8 @@ function install_retropie() {
     # used in the RetroPie image (as applicable)
     # See https://github.com/RetroPie/RetroPie-Setup/blob/master/scriptmodules/admin/image.sh
     cd $USER_HOME
-    git clone --depth=1 https://github.com/RetroPie/RetroPie-Setup.git
+    git clone --depth=1 -b extended https://github.com/Mr-Ugly-Hacks/RetroPie-Setup.git
+	git clone -b test-x86 https://github.com/Mr-Ugly-Hacks/RetroPie-Extra.git $USER_HOME/RetroPie-Setup/ext/RetroPie-Extra
 
     UNKNOWN_PLATFORM=$($USER_HOME/RetroPie-Setup/retropie_packages.sh setup | grep "Unknown platform" | wc -l)
 	if [[ $UNKNOWN_PLATFORM > 0 ]]; then
@@ -133,29 +134,29 @@ function disable_sudo_password() {
 
 
 # Install latest Intel video drivers
-function install_latest_intel_drivers() {
-    echo "--------------------------------------------------------------------------------"
-    echo "| Installing the latest Intel video drivers from 'ppa:ubuntu-x-swat/updates'"
-    echo "| This may throw errors on a new release if this PPA does not supportit yet (OK)."
-    echo "--------------------------------------------------------------------------------"
-    add-apt-repository -y ppa:ubuntu-x-swat/updates
-    apt-get update && apt-get -y upgrade
-    echo -e "FINISHED install_latest_intel_drivers \n\n"
-    sleep 2
-}
+#function install_latest_intel_drivers() {
+#    echo "--------------------------------------------------------------------------------"
+#    echo "| Installing the latest Intel video drivers from 'ppa:ubuntu-x-swat/updates'"
+#    echo "| This may throw errors on a new release if this PPA does not supportit yet (OK)."
+#    echo "--------------------------------------------------------------------------------"
+#    add-apt-repository -y ppa:ubuntu-x-swat/updates
+#    apt-get update && apt-get -y upgrade
+#    echo -e "FINISHED install_latest_intel_drivers \n\n"
+#    sleep 2
+#}
 
 
 # Install the latest Nvidia video drivers
-function install_latest_nvidia_drivers() {
-    echo "--------------------------------------------------------------------------------"
-    echo "- Installing the latest Nvidia video drivers"
-    echo "--------------------------------------------------------------------------------"
-    apt-get install -y $APT_RECOMMENDS ubuntu-drivers-common
-    add-apt-repository -y ppa:graphics-drivers/ppa
-    ubuntu-drivers autoinstall
-    echo -e "FINISHED install_latest_nvidia_drivers \n\n"
-    sleep 2
-}
+#function install_latest_nvidia_drivers() {
+#    echo "--------------------------------------------------------------------------------"
+#    echo "- Installing the latest Nvidia video drivers"
+#    echo "--------------------------------------------------------------------------------"
+#    apt-get install -y $APT_RECOMMENDS ubuntu-drivers-common
+#    add-apt-repository -y ppa:graphics-drivers/ppa
+#    ubuntu-drivers autoinstall
+#    echo -e "FINISHED install_latest_nvidia_drivers \n\n"
+#    sleep 2
+#}
 
 
 # Install MESA Vulkan drivers
@@ -546,10 +547,10 @@ if [[ -z "$1" ]]; then
     install_retropie_dependencies
     install_retropie
     install_retroarch_shaders
-    disable_sudo_password
+ #   disable_sudo_password
     #-- Common video drivers
-    install_latest_intel_drivers
-    install_latest_nvidia_drivers
+  #  install_latest_intel_drivers
+  #  install_latest_nvidia_drivers
     install_vulkan
     #-- Hide text and boot directly into EmulationStation
     enable_plymouth_theme "retropie-pacman"       # See https://github.com/HerbFargus/plymouth-themes.git for other theme names

@@ -9,7 +9,7 @@ SCRIPT_FILE="$(basename $SCRIPT_PATH)"
 REPO_NAME="RetroPie-Setup-Ubuntu"
 
 # Default repository and branch
-REPO_URL="https://github.com/MizterB/RetroPie-Setup-Ubuntu"
+REPO_URL="https://github.com/Mr-Ugly-Hacks/RetroPie-Setup-Ubuntu"
 REPO_BRANCH="master"
 # Overide Reo URL and/or branch via "-r [repository url]" and "-b [branch]" command-line options 
 while getopts "r:b:" OPTIONS; do
